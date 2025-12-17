@@ -1,171 +1,146 @@
-# Weather Query Application
+# 🌦️ SanchAI Analytics – Weather Query Assistant  
+**Internship Technical Assessment Submission**
 
-A minimal web application with React frontend and FastAPI backend that uses Langchain + OpenRouter to answer weather queries.
+A minimal, clean, and assignment-focused full-stack application that allows users to ask **weather-related questions for any city** using natural language.
 
-## Features
+This project demonstrates **LLM-based tool orchestration** using **LangChain**, with a **FastAPI backend** and a **React frontend**.
 
-- **React Frontend**: Clean and modern UI with input box and send button
-- **FastAPI Backend**: Fast and efficient API server
-- **Langchain Integration**: Uses Langchain agents with OpenRouter LLM
-- **Weather Tool**: Custom tool to fetch real-time weather data
-- **Natural Language Processing**: Ask weather questions in natural language
+---
 
-## Project Structure
+## 📌 Assignment Objective
 
-```
-.
-├── backend/
-│   ├── main.py              # FastAPI application with Langchain agent
-│   ├── requirements.txt     # Python dependencies
-│   └── .env.example        # Environment variables template
-├── frontend/
-│   ├── public/
-│   │   └── index.html
-│   ├── src/
-│   │   ├── App.js          # Main React component
-│   │   ├── App.css         # Styling
-│   │   ├── index.js        # React entry point
-│   │   └── index.css       # Global styles
-│   └── package.json        # Node dependencies
-└── README.md
-```
+Build a web application where:
+- Users can ask questions like *“What’s the weather in Pune?”*
+- The backend uses an **LLM with a tool** to fetch weather data
+- The frontend displays the generated response
+- Non-weather queries are handled gracefully
 
-## Setup Instructions
+This project strictly follows the scope provided in the assignment.
 
-### Prerequisites
+---
 
-- Python 3.8+
-- Node.js 16+
-- OpenRouter API key (get from https://openrouter.ai/)
-- OpenWeather API key (optional, get from https://openweathermap.org/api)
+## 🧠 Core Concept
 
-### Backend Setup
+The backend is powered by a **LangChain Agent** that:
+- Interprets the user’s natural language query
+- Decides whether a weather tool should be invoked
+- Calls the OpenWeather API via a tool when required
+- Returns a human-readable response to the frontend
 
-1. Navigate to the backend directory:
-   ```bash
-   cd backend
-   ```
+There is:
+- ❌ No manual keyword detection  
+- ❌ No regex-based city extraction  
+- ❌ No hard-coded business logic  
 
-2. Create a virtual environment:
-   ```bash
-   python -m venv venv
-   ```
+All reasoning and decision-making is handled by the **LLM agent**.
 
-3. Activate the virtual environment:
-   - Windows: `venv\Scripts\activate`
-   - macOS/Linux: `source venv/bin/activate`
+---
 
-4. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+## 🏗️ Architecture Overview
 
-5. Create a `.env` file from the example:
-   ```bash
-   copy .env.example .env
-   ```
+User (React UI)
+↓
+FastAPI Backend
+↓
+LangChain Agent (via OpenRouter LLM)
+↓
+Weather Tool (OpenWeather API)
+↓
+Final Response to Frontend
 
-6. Edit `.env` and add your API keys:
-   ```
-   OPENROUTER_API_KEY=your_openrouter_api_key_here
-   OPENWEATHER_API_KEY=your_openweather_api_key_here
-   ```
+---
 
-7. Run the backend server:
-   ```bash
-   python main.py
-   ```
+## 🖥️ Application Screenshots
 
-   The backend will start on http://localhost:8000
+### ✅ Weather Query Example
+User asks a valid weather-related question and receives real-time weather data.
+<img width="1917" height="871" alt="Screenshot 2025-12-17 202219" src="https://github.com/user-attachments/assets/1d805c67-046a-429b-bc9e-cdbb4bf50b8e" />
 
-### Frontend Setup
 
-1. Navigate to the frontend directory:
-   ```bash
-   cd frontend
-   ```
+<img width="1330" height="862" alt="Screenshot 2025-12-17 212000" src="https://github.com/user-attachments/assets/d0b8a468-5e77-454d-b935-520f237d1bcb" />
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+---
 
-3. Start the development server:
-   ```bash
-   npm start
-   ```
+### 🚫 Non-Weather Query Handling
+If the user asks something unrelated, the agent politely explains that it only supports weather queries.
 
-   The frontend will open at http://localhost:3000
+![Non Weather Query Output](assets/screenshots/non_weather_query.png)
 
-## Usage
+---
 
-1. Ensure both backend and frontend servers are running
-2. Open http://localhost:3000 in your browser
-3. Type a weather query like:
-   - "What's the weather in Pune?"
-   - "How's the weather in London today?"
-   - "Tell me the weather of Tokyo"
-4. Click the send button or press Enter
-5. The AI assistant will process your query and return the weather information
-
-## How It Works
-
-1. **User Input**: User enters a natural language query in the React frontend
-2. **API Request**: Frontend sends the query to the FastAPI backend
-3. **Langchain Agent**: Backend uses Langchain agent with OpenRouter LLM to process the query
-4. **Tool Invocation**: Agent identifies the need to check weather and calls the `get_weather` tool
-5. **Weather Data**: Tool fetches real-time weather data from OpenWeather API
-6. **Response Generation**: LLM generates a natural language response with the weather information
-7. **Display**: Frontend displays the response to the user
-
-## API Endpoints
-
-### POST /query
-Process a weather query
-
-**Request Body:**
-```json
-{
-  "query": "What's the weather in Pune?"
-}
-```
-
-**Response:**
-```json
-{
-  "response": "The weather in Pune is clear sky. Temperature: 24°C (feels like 23°C), Humidity: 45%"
-}
-```
-
-### GET /
-Health check endpoint
-
-**Response:**
-```json
-{
-  "message": "Weather Query API is running"
-}
-```
-
-## Technologies Used
-
-### Backend
-- **FastAPI**: Modern, fast web framework for building APIs
-- **Langchain**: Framework for building LLM applications
-- **OpenRouter**: Access to various LLM models
-- **OpenWeather API**: Real-time weather data
+## ⚙️ Technology Stack
 
 ### Frontend
-- **React**: JavaScript library for building user interfaces
-- **Axios**: HTTP client for API requests
-- **CSS3**: Modern styling with gradients and animations
+- React
+- JavaScript
+- Fetch API
 
-## Notes
+### Backend
+- FastAPI
+- LangChain (Agents + Tool Calling)
+- OpenRouter (LLM Provider)
+- OpenWeather API
 
-- The application uses `meta-llama/llama-3.1-8b-instruct:free` model from OpenRouter
-- If OpenWeather API key is not provided, the weather tool returns placeholder data
-- CORS is enabled for development (configure appropriately for production)
+---
 
-## License
+## 🚀 Local Setup Instructions
 
-MIT
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/DurgeshSakhare23/Sanchai_Analytics_Assignment.git
+cd Sanchai_Analytics_Assignment
+
+2️⃣ Backend Setup
+cd backend
+python -m venv venv
+source venv/bin/activate   # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+
+
+Create a .env file inside the backend folder:
+
+OPENWEATHER_API_KEY=your_openweather_api_key
+OPENROUTER_API_KEY=your_openrouter_api_key
+
+
+Run the backend server:
+
+uvicorn main:app --reload
+
+
+Backend runs at:
+
+http://127.0.0.1:8000
+
+3️⃣ Frontend Setup
+cd frontend
+npm install
+npm start
+
+
+Frontend runs at:
+
+http://localhost:3000
+
+🧪 Example API Usage
+Request
+POST /chat
+{
+  "message": "Tell me the weather in Nagpur"
+}
+
+Response
+"The weather in Nagpur is haze. Temperature: 18°C, Humidity: 59%."
+
+👤 Author
+
+Durgesh Sakhare
+B.Tech Student
+Backend & AI-Focused Developer
+
+
+
+
+
+
