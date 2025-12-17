@@ -62,15 +62,19 @@ Final Response to Frontend
 
 User asks a valid weather-related question and receives real-time weather data.
 
-<img width="1917" height="871" alt="Weather Query Example" src="https://github.com/user-attachments/assets/1d805c67-046a-429b-bc9e-cdbb4bf50b8e" />
+<img width="1913" height="872" alt="image" src="https://github.com/user-attachments/assets/e7732120-0235-4d89-a867-a231c8538579" />
+
+
+<!-- <img width="1917" height="871" alt="Weather Query Example" src="https://github.com/user-attachments/assets/1d805c67-046a-429b-bc9e-cdbb4bf50b8e" /> -->
 
 ---
 
 ### Non-Weather Query Handling
 
 If the user asks something unrelated, the agent politely explains that it only supports weather queries.
+<img width="1916" height="873" alt="image" src="https://github.com/user-attachments/assets/1a11095a-c6d4-489b-9c86-ea2111bfb499" />
 
-<img width="1330" height="862" alt="Non Weather Query" src="https://github.com/user-attachments/assets/d0b8a468-5e77-454d-b935-520f237d1bcb" />
+<!-- <img width="1330" height="862" alt="Non Weather Query" src="https://github.com/user-attachments/assets/d0b8a468-5e77-454d-b935-520f237d1bcb" /> -->
 
 ---
 
